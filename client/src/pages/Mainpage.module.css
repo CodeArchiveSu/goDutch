@@ -1,0 +1,113 @@
+/* * {
+  font-family: "Courier New", Courier, monospace;
+} */
+
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.maintop {
+  font-size: 18px;
+  font-weight: lighter;
+  border-radius: 13px;
+  margin-top: 3vh;
+  height: 13vh;
+  width: 90vw;
+  background-color: black;
+  color: white;
+  box-shadow: 0 0 5px #d6d6d6;
+}
+
+.date {
+  font-size: 20px;
+}
+
+.addBtn {
+  width: 90vw;
+  height: 13vh;
+  border-radius: 13px;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: rgb(128, 128, 128);
+  box-shadow: 0 0 5px #b6b5b5;
+}
+
+.inputBox input {
+  width: 80%;
+}
+.popup {
+  background-color: rgb(241, 241, 241);
+}
+
+.inputBox {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.addContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todoList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3vh;
+}
+
+.inputBoxes {
+  /* background-color: rgb(241, 241, 241); */
+  width: 90vw;
+  height: 30vh;
+  background-color: rgb(241, 241, 241);
+  color: rgb(128, 128, 128);
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+}
+
+.inputBoxes > div {
+  width: 100%;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.boxElements {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2vh;
+}
+
+.inputBoxes div input {
+  width: 60%;
+}
+
+.autoResize {
+  width: 200px; /* 원하는 width로 설정 */
+  min-height: 30px; /* 최소 height 설정 */
+  resize: none; /* 사용자가 사이즈 조정 불가 */
+  overflow: hidden; /* 스크롤바 숨기기 */
+  white-space: nowrap; /* 글자가 줄 바꿈 없이 계속 가로로 써지게 설정 */
+}
+.textArea {
+  width: 20vw;
+  height: 5vh;
+  border-radius: 10px;
+  border: none;
+}
