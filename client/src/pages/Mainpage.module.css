@@ -1,6 +1,6 @@
-/* * {
-  font-family: "Courier New", Courier, monospace;
-} */
+body {
+  background-color: rgb(26, 26, 26);
+}
 
 .mainPage {
   display: flex;
@@ -9,36 +9,71 @@
 }
 
 .maintop {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: lighter;
   border-radius: 13px;
-  margin-top: 3vh;
-  height: 13vh;
+  margin-top: 8vh;
+  height: 16vh;
   width: 90vw;
-  background-color: black;
+  /* background-color: rgb(255, 255, 255); */
   color: white;
-  box-shadow: 0 0 5px #d6d6d6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* box-shadow: 0 0 7px #999999; */
+}
+/* .maintop div {
+  background-color: transparent;
+} */
+
+.groupList {
+  width: 96vw;
+  background-color: rgb(60, 60, 60);
+  height: 67vh;
+  border-radius: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(228, 228, 228);
 }
 
-.date {
-  font-size: 20px;
+.groupTitle {
+  margin: 1vh;
+  margin-left: 3vh;
+}
+
+.addBar {
+  width: 15vw;
+  height: 5px;
+  background-color: rgb(225, 225, 225);
+  margin-top: 11px;
+  border-radius: 30px;
 }
 
 .addBtn {
-  width: 90vw;
-  height: 13vh;
-  border-radius: 13px;
+  width: 96vw;
+  height: 8vh;
+  background-color: #ffffff;
+  border-top-right-radius: 13px;
+  border-top-left-radius: 13px;
   border: none;
-  background-color: rgb(255, 255, 255);
-  color: rgb(128, 128, 128);
-  box-shadow: 0 0 5px #b6b5b5;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  /* box-shadow: 0 0 5px #b6b5b5; */
 }
 
-.inputBox input {
+/* .inputBox input {
   width: 80%;
-}
-.popup {
-  background-color: rgb(241, 241, 241);
+} */
+
+.detailBtn {
+  border: none;
+  border-radius: 13px;
+  background-color: rgb(225, 225, 225);
+  /* background: linear-gradient(#ffffff, #000000); */
 }
 
 .inputBox {
@@ -53,32 +88,24 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
-}
-
-.todoList {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 3vh;
 }
 
 .inputBoxes {
-  /* background-color: rgb(241, 241, 241); */
-  width: 90vw;
-  height: 30vh;
-  background-color: rgb(241, 241, 241);
-  color: rgb(128, 128, 128);
+  width: 96vw;
+  background-color: white;
+  color: rgb(0, 0, 0);
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
   position: absolute;
   bottom: 0;
-  display: flex;
+  padding-bottom: 5vh;
+  /* box-shadow: 0 0 5px #ffffff; */
 }
 
 .inputBoxes > div {
-  width: 100%;
+  width: 98%;
   margin-top: 12px;
   display: flex;
   flex-direction: column;
@@ -90,12 +117,19 @@
   width: 90%;
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
   justify-content: space-between;
   margin-top: 2vh;
 }
 
 .inputBoxes div input {
-  width: 60%;
+  width: 100%;
+  height: 3vh;
+  /* background-color: rgb(240, 240, 240); */
+  border: none;
+  border-bottom: 1px solid rgb(240, 240, 240);
+  /* border-radius: 13px; */
+  padding: 5px 12px 5px 12px;
 }
 
 .autoResize {
@@ -105,9 +139,104 @@
   overflow: hidden; /* 스크롤바 숨기기 */
   white-space: nowrap; /* 글자가 줄 바꿈 없이 계속 가로로 써지게 설정 */
 }
-.textArea {
-  width: 20vw;
-  height: 5vh;
-  border-radius: 10px;
+
+.inputTitle {
+  background-color: rgb(26, 26, 26);
+  color: white;
+  width: 15vw;
+  padding: 5px 12px 5px 12px;
+  /* border-radius: 10px; */
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.saveBtn {
+  /* background-color: orange; */
+
+  color: rgb(26, 26, 26);
+  font-weight: 600;
+  padding: 10px 0px 10px 0px;
+
   border: none;
+  text-align: center;
+  width: 100%;
+}
+
+.nameList {
+  display: flex;
+  min-height: 6vh;
+  flex-direction: row;
+  align-items: flex-end;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  /* background-color: antiquewhite; */
+}
+.nameList > div {
+  top: 0;
+  margin-left: 1vh;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  /* background-color: rgb(74, 55, 29); */
+}
+
+.nameList::-webkit-scrollbar {
+  display: none;
+}
+
+.nameList > div:first-child {
+  margin-left: 0;
+}
+
+.nameBox {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  /* background-color: aliceblue; */
+}
+
+.nameList div {
+  margin-top: 1vh;
+  padding: 5px 12px 5px 12px;
+  height: 3vh;
+  border: 1px solid rgb(225, 225, 225);
+}
+
+.nameList div:first-child {
+  margin-top: 0;
+}
+
+.addBtnIcon {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shake {
+  animation: shake 0.3s;
+}
+
+.inputField {
+  width: 200px;
+  padding: 10px;
 }

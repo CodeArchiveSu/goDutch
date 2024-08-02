@@ -42,7 +42,7 @@ function Nav() {
             {/* <svg width="15" height="15" viewBox="0 0 20 20">
               <path d="M0 7 L 20 7 L 10 16" />
             </svg> */}
-            <BiDotsHorizontalRounded />
+            <BiDotsHorizontalRounded style={{ color: "white" }} />
           </motion.div>
         </motion.button>
         <motion.ul
