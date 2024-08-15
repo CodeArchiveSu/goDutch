@@ -39,7 +39,10 @@ function GroupList({
       if (item.bills.length === 0) {
         return [0]; // bills 배열이 비어 있으면 0을 반환
       } else {
-        return item.bills.flatMap((subItem) => subItem.totalAmount);
+        return item.bills.reduce(
+          (subTotal, subItem) => subTotal + Number(subItem.totalAmount),
+          0
+        );
       }
     });
     console.log(show);
@@ -60,10 +63,11 @@ function GroupList({
               navigateToDetail(item._id);
             }}
           >
+            {/* <div>{item.createdAt}</div> */}
             <div className={styles.groupName}>
               <div>{item.name}</div>
               <div className={styles.totalAmount}>
-                {arrayOfTotal[index]}{" "}
+                {arrayOfTotal[index] == undefined ? 0 : arrayOfTotal[index]}
                 <div style={{ fontFamily: "Helvetica" }}>
                   {currency?.symbol}
                 </div>
@@ -71,9 +75,12 @@ function GroupList({
             </div>
 
             <div className={styles.name}>
-              {item.members.map((names) => (
-                <div style={{ fontFamily: "Akkurat" }}>{names.name}</div>
+              {item.members.map((names, index) => (
+                <div style={{ fontFamily: "Akkurat" }}> {names.name}</div>
               ))}
+            </div>
+            <div style={{ fontFamily: "Akkurat", fontSize: "10px" }}>
+              {item.createdAt.split("T")[0]}
             </div>
           </div>
         ))}

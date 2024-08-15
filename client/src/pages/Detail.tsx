@@ -94,15 +94,6 @@ function Detail() {
       bill: people,
     });
 
-    // const result = {
-    //   totalAmount: totalAmount,
-    //   group_id: groupId,
-    //   name: billTitle,
-    //   payer: payer === "" ? LoggedInUser.user._id : payer,
-    //   bill: people.map((item) => item),
-    // };
-
-    // console.log(result);
     const requestOptions = {
       method: "POST",
       headers: myHeaders,
@@ -119,6 +110,7 @@ function Detail() {
         console.log("new bills in group added", result);
         setPeople([{ user: "", amount: 0 }]);
         setBillTitle("");
+        setLoadNewBill(!loadNewBill);
       }
       if (!response.ok) {
         const result = (await response.json()) as NotOkType;
@@ -135,13 +127,15 @@ function Detail() {
     if (selectedGroup?.members) {
       const newPeople = selectedGroup.members.map((item) => ({
         user: item._id,
-        amount: 0, // Assuming you meant to use "amount" instead of "amoun"
+        amount: 0,
       }));
       setPeople(newPeople);
     }
   }, [selectedGroup]);
 
   const divideAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+
     const Amount = Number(e.target.value);
     setTotalAmount(Amount);
     const divided = (Amount / (selectedGroup?.members?.length ?? 1)).toFixed(2);
@@ -253,7 +247,9 @@ function Detail() {
     <div className={styles.detailPage}>
       <div className={styles.maintop}>
         <div>{selectedGroup && selectedGroup.name}</div>
-        <div>{selectedGroup && selectedGroup.createdAt}</div>
+        <div style={{ fontFamily: "Akkurat", fontSize: "16px" }}>
+          {selectedGroup && selectedGroup.createdAt.split("T")[0]}
+        </div>
       </div>
 
       <div className={styles.names}>
@@ -285,11 +281,11 @@ function Detail() {
                       <div>
                         {subItem.amount} {currency?.code}
                       </div>
-                      <div>
+                      <div className={styles.icon}>
                         {bills[index].payer._id === subItem.user._id && (
-                          <GoDotFill />
+                          <GoDotFill style={{ color: "green" }} />
                         )}
-                        {subItem.user.name}
+                        <div>{subItem.user.name}</div>
                       </div>
                     </div>
                   </div>
@@ -421,7 +417,7 @@ function Detail() {
                   onClick={() => {
                     setIsOpen(false);
                     handleSave();
-                    setLoadNewBill(!loadNewBill);
+                    // setLoadNewBill(!loadNewBill);
                   }}
                 >
                   SAVE

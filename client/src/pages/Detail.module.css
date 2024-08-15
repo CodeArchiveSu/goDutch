@@ -216,8 +216,6 @@
 
 .nameBoxinBill {
   padding: 5px 12px 5px 12px;
-  /* height: 3vh; */
-
   background-color: rgba(236, 236, 236, 0.614);
   display: flex;
   justify-content: space-between;
@@ -225,6 +223,13 @@
   border-radius: 10px;
 }
 
+.icon {
+  display: flex;
+  align-items: center;
+}
+.icon > div {
+  margin-left: 0.2vh;
+}
 .nameSelect option {
   position: relative;
 }
