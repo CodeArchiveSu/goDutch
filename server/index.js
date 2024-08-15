@@ -4,6 +4,11 @@ import mongoose, { mongo } from "mongoose";
 import * as dotenv from "dotenv";
 import router from "./routes/testRouter.js";
 import userRouter from "./routes/userRouter.js";
+import groupRouter from "./routes/groupRouter.js";
+import billRouter from "./routes/billRouter.js";
+import passport from "passport";
+import { passportStrategy } from "./config/passportConfig.js";
+import { cloudinaryConfig } from "./config/cloudinaryConfig.js";
 
 dotenv.config();
 const app = express();
@@ -12,6 +17,9 @@ const addMiddlewares = () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(cors());
+  cloudinaryConfig();
+  app.use(passport.initialize());
+  passport.use(passportStrategy);
 };
 
 const startServer = () => {
@@ -24,6 +32,8 @@ const startServer = () => {
 const loadRoutes = () => {
   app.use("/api", router);
   app.use("/api/users", userRouter);
+  app.use("/api/groups", groupRouter);
+  app.use("/api/bills", billRouter);
 };
 
 // console.log(process.env.MONGO_DB);

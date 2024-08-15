@@ -42,7 +42,7 @@ function Nav() {
             {/* <svg width="15" height="15" viewBox="0 0 20 20">
               <path d="M0 7 L 20 7 L 10 16" />
             </svg> */}
-            <BiDotsHorizontalRounded style={{ color: "white" }} />
+            <BiDotsHorizontalRounded style={{ color: "black" }} />
           </motion.div>
         </motion.button>
         <motion.ul
@@ -73,22 +73,25 @@ function Nav() {
             className="list"
             onClick={() => {
               navigate("/");
+              setIsOpen(!isOpen);
             }}
           >
-            To do <FiAlignJustify style={{ strokeWidth: 1 }} />
+            Home
+            <FiAlignJustify style={{ strokeWidth: 1 }} />
           </motion.li>
           <motion.li
             variants={itemVariants}
             className="list"
             onClick={() => {
-              navigate("/deadline");
+              navigate("/profile");
+              setIsOpen(!isOpen);
             }}
           >
-            Deadlines <TbTimelineEventText style={{ strokeWidth: 1 }} />
+            Profile <TbTimelineEventText style={{ strokeWidth: 1 }} />
           </motion.li>
-          <motion.li variants={itemVariants} className="list">
+          {/* <motion.li variants={itemVariants} className="list" on>
             Search <IoIosSearch style={{ strokeWidth: 0.1 }} />
-          </motion.li>
+          </motion.li> */}
         </motion.ul>
       </motion.nav>
     </>

@@ -1,16 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Mainpage.module.css";
 import moment from "moment";
-import { Variants, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { IoIosAddCircle } from "react-icons/io";
 
 import "react-quill/dist/quill.snow.css";
-import { currency } from "../@types/CustomTypes";
+import {
+  Group,
+  ListGroup,
+  User,
+  currency,
+  loggedInUser,
+} from "../@types/CustomTypes";
+import GroupList from "../components/GroupList";
+import { getToken } from "../utils/tokenServices";
+import { useSelector } from "react-redux";
+import { LoadingAllUsers } from "../function/AllUsers";
+import MainPageProfile from "../components/MainPageProfile";
+import { fetchCurrency } from "../function/fetchCurrency";
 
 function Mainpage() {
-  const [emails, setEmails] = useState<string[]>([]);
+  const [searchEmailValue, setSearchEmailValue] = useState("");
+  const [groups, setGroups] = useState<Group[]>([]);
+  const [names, setNames] = useState<User[]>([]);
+  const [groupName, setGroupName] = useState<string>("");
   const [emailValue, setEmailValue] = useState("");
-  const [add, setAdd] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [currency, setCurrency] = useState<currency | null>(null);
   // const [date, setDate] = useState("");
@@ -18,7 +32,7 @@ function Mainpage() {
   //   moment().format("hh:mm:ss"); // 시:분:초
   const day = moment().format("dddd"); // Tuesday
   const [shake, setShake] = useState(false);
-  console.log(date, day);
+  // console.log(date, day);
 
   const show = {
     opacity: 1,
@@ -44,22 +58,54 @@ function Mainpage() {
     },
   };
 
-  const fetchCurrency = () => {
-    console.log(process.env.REACT_APP_API_KEY_LOCATION);
-    fetch(
-      `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.REACT_APP_API_KEY_LOCATION}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const currency = data.currency;
-        console.log(currency);
-        setCurrency(currency);
-      })
-      .catch((error) => console.error("Error:", error));
+  type state = {
+    user: loggedInUser;
+  };
+
+  let LoggedInUser = useSelector((state: state) => {
+    return state.user;
+  });
+
+  // console.log(":)", LoggedInUser);
+
+  const token = getToken();
+
+  const fetchGroups = async () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+    };
+
+    try {
+      if (LoggedInUser) {
+        const response = await fetch(
+          `http://localhost:5000/api/groups/${LoggedInUser.user._id}`,
+          requestOptions
+        );
+        if (response.ok) {
+          const result = (await response.json()) as ListGroup;
+          setGroups(result.groups);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    fetchCurrency();
+    fetchGroups();
+  }, [LoggedInUser]);
+
+  useEffect(() => {
+    const getCurrency = async () => {
+      const currency = await fetchCurrency();
+      setCurrency(currency); // This will log the fetched currency
+    };
+
+    getCurrency();
   }, []);
 
   const addEmailValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,31 +113,114 @@ function Mainpage() {
     setEmailValue(e.target.value);
   };
 
-  const addEmailList = () => {
+  const addEmailList = async () => {
     if (emailValue === "") {
       setShake(true);
       setTimeout(() => setShake(false), 500);
     } else {
-      setEmails((prev) => [...prev, emailValue]);
       setEmailValue("");
+      // console.log(token);
+
+      if (token && emailValue) {
+        // LoadingAllUsers(token, emailValue);
+        const foundUsers = (await LoadingAllUsers(token, emailValue)) as User[];
+        console.log(foundUsers);
+        if (foundUsers && foundUsers.length > 0) {
+          setNames((prev) => [...prev, foundUsers[0]]);
+        }
+      }
     }
   };
 
+  const addGroupName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setGroupName(e.target.value);
+  };
+
+  const creatNewGroup = async () => {
+    console.log({
+      name: groupName,
+      members: names,
+    });
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("name", groupName);
+    urlencoded.append("members", LoggedInUser.user._id);
+    names.map((item) => urlencoded.append("members", `${item._id}`));
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: urlencoded,
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/groups/newGroup",
+        requestOptions
+      );
+      if (response.ok) {
+        const result = (await response.json()) as Group;
+        console.log("new group created", result);
+        setNames([]);
+        setGroupName("");
+        setIsOpen(false);
+        setGroups((prev) => [...prev, result]);
+      }
+      if (!response.ok) {
+        console.log("error creating new group");
+      }
+    } catch (error) {
+      console.log("error creating new group", error);
+    }
+  };
+
+  const [TotalOwned, setTotalOwned] = useState(0);
+
+  const getSum = () => {
+    let sum = 0;
+    groups.forEach((item) =>
+      item.bills.forEach((subItem) => {
+        if (subItem.payer !== LoggedInUser.user._id) {
+          //아닐때 LoggedInUser.user._id  와 같은 아이디 있는 bill들의 값을 다 더한다
+          const filterBills = subItem.bill.filter(
+            (filter) => filter.user._id === LoggedInUser.user._id
+          );
+          filterBills.forEach((amount) => (sum += amount.amount));
+        }
+      })
+    );
+    return sum;
+  };
+
+  useEffect(() => {
+    const result = getSum();
+    setTotalOwned(result);
+  }, [groups]);
+
+  // console.log(TotalOwned);
+
   return (
     <div className={styles.mainPage}>
+      <MainPageProfile groups={groups} />
       <div className={styles.maintop}>
         <div style={{ fontSize: "14px" }}>I'm owned</div>
-        <div>0 {currency?.symbol}</div>
-        <div>
-          <button className={styles.detailBtn}>go to Details</button>
+        <div style={{ fontFamily: "Akkurat" }}>
+          {TotalOwned} {currency?.code}{" "}
         </div>
       </div>
 
-      <div className={styles.groupList}>
-        Create your firtst new group
-        {/* <div className={styles.groupDiv}>
-          <div className={styles.groupTitle}>Create your firtst new group</div>
-        </div> */}
+      <div
+        className={`${groups.length === 0 ? styles.notice : styles.groupList}`}
+      >
+        {groups.length === 0 ? (
+          <div>No group found</div>
+        ) : (
+          <GroupList groups={groups} currency={currency} />
+        )}
       </div>
 
       <div className={styles.addGroupList}>
@@ -104,7 +233,8 @@ function Mainpage() {
             className={styles.addBtn}
             onClick={() => setIsOpen(!isOpen)}
           >
-            <div className={styles.addBar}></div>
+            CREATE NEW GROUP
+            {/* <div className={styles.addBar}></div> */}
           </motion.button>
 
           <motion.div
@@ -119,24 +249,24 @@ function Mainpage() {
                   placeholder="Add here group name"
                   maxLength={30}
                   className={styles.inputField}
+                  onChange={(e) => {
+                    addGroupName(e);
+                  }}
                 />
               </div>
-              {/* <div className={styles.boxElements}>
-                {currency?.name}
-                <input type="number" name="" id="" style={{ border: "none" }} />
-              </div> */}
 
               <div className={styles.nameBox}>
                 <div className={styles.inputTitle}>Members</div>
                 <div>
                   <div className={styles.nameList}>
-                    {emails.map((item) => (
+                    {names.map((item) => (
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ ease: "easeOut", duration: 0.4 }}
+                        key={item._id}
                       >
-                        {item}
+                        {item.name}
                       </motion.div>
                     ))}
                   </div>
@@ -146,6 +276,7 @@ function Mainpage() {
                 className={styles.boxElements}
                 style={{ alignItems: "center" }}
               >
+                Email
                 <input
                   type="email"
                   // type="text"
@@ -181,6 +312,9 @@ function Mainpage() {
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                   className={styles.saveBtn}
+                  onClick={() => {
+                    creatNewGroup();
+                  }}
                 >
                   SAVE
                 </motion.button>

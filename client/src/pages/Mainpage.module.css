@@ -1,5 +1,6 @@
 body {
-  background-color: rgb(26, 26, 26);
+  /* background-color: rgb(246, 246, 246); */
+  /* background-color: rgb(235, 235, 235); */
 }
 
 .mainPage {
@@ -9,15 +10,16 @@ body {
 }
 
 .maintop {
-  font-size: 24px;
+  font-size: 29px;
   font-weight: lighter;
   border-radius: 13px;
-  margin-top: 8vh;
-  height: 16vh;
-  width: 90vw;
-  /* background-color: rgb(255, 255, 255); */
+  margin-top: 1vh;
+  height: 18vh;
+  width: 96vw;
+  background-color: rgb(0, 0, 0);
   color: white;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
 
@@ -27,9 +29,9 @@ body {
   background-color: transparent;
 } */
 
-.groupList {
+.notice {
   width: 96vw;
-  background-color: rgb(60, 60, 60);
+  background-color: rgb(213, 213, 213);
   height: 67vh;
   border-radius: 13px;
   display: flex;
@@ -38,14 +40,23 @@ body {
   color: rgb(228, 228, 228);
 }
 
+.groupList {
+  width: 96vw;
+  height: 67vh;
+  border-radius: 13px;
+  display: flex;
+  justify-content: center;
+  /* background-color: rgb(60, 60, 60); */
+}
+
 .groupTitle {
   margin: 1vh;
   margin-left: 3vh;
 }
 
 .addBar {
-  width: 15vw;
-  height: 5px;
+  /* width: 15vw; */
+  /* height: 5px; */
   background-color: rgb(225, 225, 225);
   margin-top: 11px;
   border-radius: 30px;
@@ -53,16 +64,18 @@ body {
 
 .addBtn {
   width: 96vw;
-  height: 8vh;
-  background-color: #ffffff;
-  border-top-right-radius: 13px;
-  border-top-left-radius: 13px;
-  border: none;
+  height: 7vh;
+  background-color: #000000;
+  /* border-top-right-radius: 13px;
+  border-top-left-radius: 13px; */
+  border: 1px solid rgb(205, 205, 205);
+  border-bottom: none;
   position: fixed;
-  bottom: 0;
+  bottom: 1vh;
+  color: white;
   display: flex;
   justify-content: center;
-  /* box-shadow: 0 0 5px #b6b5b5; */
+  align-items: center;
 }
 
 /* .inputBox input {
@@ -148,6 +161,7 @@ body {
   /* border-radius: 10px; */
   font-weight: 500;
   font-size: 14px;
+  text-align: center;
   margin-top: 10px;
 }
 
@@ -172,14 +186,15 @@ body {
   scroll-behavior: smooth;
   /* background-color: antiquewhite; */
 }
-.nameList > div {
+
+/* .nameList > div {
   top: 0;
   margin-left: 1vh;
   font-size: 14px;
   display: flex;
   align-items: center;
-  /* background-color: rgb(74, 55, 29); */
-}
+  
+} */
 
 .nameList::-webkit-scrollbar {
   display: none;
@@ -201,6 +216,12 @@ body {
   padding: 5px 12px 5px 12px;
   height: 3vh;
   border: 1px solid rgb(225, 225, 225);
+
+  top: 0;
+  margin-left: 1vh;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
 }
 
 .nameList div:first-child {

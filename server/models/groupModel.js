@@ -2,12 +2,15 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const groupSchema = new Schema({
-  name: { type: String, require: true },
-  date: { type: String, require: true },
-  members: [{ type: String, require: true }],
-});
+const groupSchema = new Schema(
+  {
+    name: { type: String, require: true },
+    members: [{ type: Schema.Types.ObjectId, ref: "users", require: true }],
+    bills: [{ type: Schema.Types.ObjectId, ref: "bills", require: true }],
+  },
+  { timestamps: true }
+);
 
-const GroupModel = mongoose.model("group", groupSchema);
+const GroupModel = mongoose.model("groups", groupSchema);
 
 export default GroupModel;

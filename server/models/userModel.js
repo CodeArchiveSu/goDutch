@@ -7,7 +7,12 @@ const userSchema = new Schema(
     name: { type: String, require: true },
     email: { type: String, require: true, unique: true },
     password: { type: String, require: true },
-    avatar: { type: String, default: "user.png" },
+    avatar: {
+      public_id: { type: String },
+      url: { type: String, default: "user.png" },
+    },
+    groups: [{ type: Schema.Types.ObjectId, ref: "groups", require: true }],
+    owned: [{ type: Schema.Types.ObjectId, ref: "bills", require: true }],
   },
   { timestamps: true }
 );
