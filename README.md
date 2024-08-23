@@ -28,6 +28,11 @@
 
 
 ## Technologies Used
+## 🎟️ Ticketmaster  
+Ticketmaster is an e-commerce platform that sells event tickets based on user location, utilizing the Ticketmaster API and Geolocation services.
+ 
+
+
 
 
 - Frontend
