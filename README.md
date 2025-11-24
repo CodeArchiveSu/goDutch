@@ -77,6 +77,7 @@ npm start
 ```
 
 ###5. Open in browser
+
 The app will be available at:
 
 ```
