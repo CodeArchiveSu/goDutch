@@ -11,7 +11,7 @@ export const LoadingAllUsers = async (token: string, email: string) => {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/api/users/findUser/${email}`,
+      `${process.env.REACT_APP_API_URL}/api/users/findUser/${email}`,
       requestOptions
     );
     if (response.ok) {
