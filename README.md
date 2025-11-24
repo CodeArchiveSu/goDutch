@@ -1,11 +1,25 @@
-## Go Dutch
+# 🌟 goDutch — Shared Expense Manager
 
-![easyme](https://i.imgur.com/ZY3w4pH.png)   
+goDutch is a smart and intuitive full-stack application designed to help groups **track, split, and settle shared expenses easily** — whether it's for trips, flatshares, events, or daily shared costs.
 
-## What is GoDutch?
-- **go Dutch** is a handy tool designed to **<u>simplify the management of shared expenses</u>** whether it's for household costs in a flatshare or expenses incurred during trips with friends. 
-- The app allows users to **<u>easily track and split costs among groups</u>** , ensuring everyone pays their fair share.
--  It also provides a clear **<u>overview of how much you owe and how much you're owed, all in one place.</u>**
+---
+
+## 📖 Contents  
+- [What is goDutch?](#-what-is-godutch)  
+- [Project Overview](#-project-overview)  
+- [Features](#-features)  
+- [Tech Stack](#%EF%B8%8F-tech-stack)  
+- [Architecture](#-architecture)  
+- [Folder Structure](#-folder-structure)  
+- [Quick Start](#-quick-start)  
+- [Environment Variables](#%EF%B8%8F-environment-variables)  
+- [API Endpoints](#-api-endpoints)  
+- [Screenshots](#-screenshots)  
+- [Future Improvements](#-future-improvements)  
+- [Contributing](#-contributing)  
+
+---
+
 
 ## 🚀 Quick Start
 Follow the steps below to run **goDutch** locally.
