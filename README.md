@@ -6,7 +6,7 @@ goDutch is a smart and intuitive full-stack application designed to help groups 
 ## 📖 Contents  
 - [What is goDutch?](#-what-is-godutch)  
 - [Features](#-features)  
-- [Tech Stack](#%EF%B8%8F-tech-stack)  
+- [Tech Stack](#-tech-stack)  
 - [Architecture](#-architecture)  
 - [Folder Structure](#-folder-structure)  
 - [Quick Start](#-quick-start)  
