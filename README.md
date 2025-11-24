@@ -43,9 +43,30 @@ client/.env
 
 Add the following:
 ```
-REACT_APP_API_URL=http://localhost:5000
+REACT_APP_API_URL=http://localhost:5001
 REACT_APP_API_KEY_LOCATION=<YOUR_IP_GEOLOCATION_API_KEY>
 ```
+
+**🟥 Server .env file**
+
+Create a file at:
+```
+server/.env
+```
+
+Add your MongoDB connection details:
+```
+MONGO_DB=mongodb+srv://<username>:<password>@cluster0.mongodb.net/goDutch
+PORT=5001
+
+###4. Start the development servers
+
+**Run Backend**
+```
+cd server
+npx nodemon server.js
+```
+
 
 
 
