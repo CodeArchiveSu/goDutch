@@ -156,7 +156,7 @@ client/.env
 Add:
 
 ```env
-REACT_APP_API_URL=http://localhost:5000
+REACT_APP_API_URL=http://localhost:5001
 REACT_APP_API_KEY_LOCATION=<YOUR_IP_GEO_KEY>
 ```
 
@@ -174,7 +174,7 @@ Add:
 
 ```env
 MONGO_DB=mongodb+srv://<username>:<password>@cluster.mongodb.net/goDutch
-PORT=5000
+PORT=5001
 JWT_SECRET=<your_secret>
 ```
 
