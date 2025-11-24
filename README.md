@@ -24,7 +24,23 @@ cd goDutch
 ```cd client
 npm install
 ```
+**Install server dependencies**
 
+```cd ../server
+npm install
+```
+
+### 3. Create environment variables
+
+**🟦 Client .env file**
+Create a file at:
+```client/.env
+```
+
+Add the following:
+```REACT_APP_API_URL=http://localhost:5000
+REACT_APP_API_KEY_LOCATION=<YOUR_IP_GEOLOCATION_API_KEY>
+```
 
 
 
