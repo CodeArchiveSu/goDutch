@@ -171,9 +171,9 @@ server/.env
 Add:
 
 ```env
-MONGO_DB=mongodb+srv://<username>:<password>@cluster.mongodb.net/goDutch
+MONGO_DB=mongodb+srv://<USERNAME>:<PASSWORD>@cluster.mongodb.net/goDutch
 PORT=5001
-JWT_SECRET=<your_secret>
+
 ```
 
 
