@@ -116,7 +116,6 @@ goDutch/
 
 Follow the steps below to run **goDutch** locally.
 
----
 
 ### 1. Clone the repository
 
@@ -124,8 +123,6 @@ Follow the steps below to run **goDutch** locally.
 git clone https://github.com/<your-username>/<your-repo>.git
 cd goDutch
 ```
-
----
 
 ### 2. Install dependencies
 
@@ -141,7 +138,7 @@ cd ../server
 npm install
 ```
 
----
+
 
 ### 3. Set up environment variables
 
@@ -160,7 +157,7 @@ REACT_APP_API_URL=http://localhost:5001
 REACT_APP_API_KEY_LOCATION=<YOUR_IP_GEO_KEY>
 ```
 
----
+
 
 #### 🟥 Server `.env`
 
@@ -178,7 +175,6 @@ PORT=5001
 JWT_SECRET=<your_secret>
 ```
 
----
 
 ### 4. Start the development servers
 
@@ -205,19 +201,25 @@ Open the frontend:
 ```
 POST /api/users/signup
 POST /api/users/login
+POST /api/updateUser
 GET  /api/users/profile
+GET  /api/users/findUser/:email
+
 ```
 
 ### **Groups**
 ```
-POST /api/groups/create
-GET  /api/groups/my-groups
+POST /api/groups/newGroup
+GET  /api/groups/allGroups
+GET  /api/groups/:userID
+GET  /api/groups/detail/:groupID
+
 ```
 
 ### **Bills**
 ```
-POST /api/bills/create
-GET  /api/bills/:groupId
+POST /api/bills/addNewBills
+GET  /api/bills/laodBills/:group_id
 ```
 
 
@@ -229,14 +231,14 @@ GET  /api/bills/:groupId
 - Multi-language support  
 - Add PWA mode  
 
----
+
 
 ## 🤝 Contributing
 
 Contributions are welcome!  
 Feel free to open issues or submit pull requests.
 
----
+
 
 ## 📄 License
 This project is licensed under the MIT License.
