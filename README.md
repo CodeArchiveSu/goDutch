@@ -10,6 +10,16 @@
 ## 🚀 Quick Start
 Follow the steps below to run **goDutch** locally.
 
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/<your-username>/<your-repo>.git
+cd goDutch```
+
+### 2.Install dependencies
+
+```cd client
+npm install```
 
 
 ## 🛠 Features
