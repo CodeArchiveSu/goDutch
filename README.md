@@ -14,12 +14,14 @@ Follow the steps below to run **goDutch** locally.
 
 ```bash
 git clone https://github.com/<your-username>/<your-repo>.git
-cd goDutch``` 
+cd goDutch
+``` 
 
 ### 2.Install dependencies
 
 ```cd client
-npm install``` 
+npm install
+``` 
 
 
 ## 🛠 Features
