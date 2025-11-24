@@ -7,6 +7,16 @@
 - The app allows users to **<u>easily track and split costs among groups</u>** , ensuring everyone pays their fair share.
 -  It also provides a clear **<u>overview of how much you owe and how much you're owed, all in one place.</u>**
 
+## 🚀 Quick Start
+Follow the steps below to run **goDutch** locally.
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/<your-username>/<your-repo>.git
+cd goDutch
+-
+
 
 
 ## 🛠 Features
