@@ -26,7 +26,7 @@ goDutch is a smart and intuitive full-stack application designed to help groups 
 
 
 - **View total amount owed and amount owed to you**
-- 
+
 | <img src="https://i.imgur.com/nb7F09X.gif" width="300" /> |
 | --- |
 
