@@ -3,10 +3,8 @@
 goDutch is a smart and intuitive full-stack application designed to help groups **track, split, and settle shared expenses easily** — whether it's for trips, flatshares, events, or daily shared costs.
 
 
-
 ## 📖 Contents  
 - [What is goDutch?](#-what-is-godutch)  
-- [Project Overview](#-project-overview)  
 - [Features](#-features)  
 - [Tech Stack](#%EF%B8%8F-tech-stack)  
 - [Architecture](#-architecture)  
@@ -14,136 +12,238 @@ goDutch is a smart and intuitive full-stack application designed to help groups 
 - [Quick Start](#-quick-start)  
 - [Environment Variables](#%EF%B8%8F-environment-variables)  
 - [API Endpoints](#-api-endpoints)  
-- [Screenshots](#-screenshots)  
 - [Future Improvements](#-future-improvements)  
 - [Contributing](#-contributing)  
 
+## ❓ What is goDutch?
 
-
-
-## 🚀 Quick Start
-Follow the steps below to run **goDutch** locally.
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/CodeArchiveSu/goDutch.git
-cd goDutch
-``` 
-
-### 2.Install dependencies
-
-**Install client dependencies**
-
-```
-cd client
-npm install
-```
-**Install server dependencies**
-
-```
-cd ../server
-npm install
-```
-
-### 3. Create environment variables
-
-**🟦 Client .env file**
-
-Create a file at:
-```
-client/.env
-```
-
-Add the following:
-```
-REACT_APP_API_URL=http://localhost:5001
-REACT_APP_API_KEY_LOCATION=<YOUR_IP_GEOLOCATION_API_KEY>
-```
-
-**🟥 Server .env file**
-
-Create a file at:
-```
-server/.env
-```
-
-Add your MongoDB connection details:
-```
-MONGO_DB=mongodb+srv://<username>:<password>@cluster0.mongodb.net/goDutch
-PORT=5001
-```
-
-### 4. Start the development servers
-
-**Run Backend**
-
-```
-cd server
-npx nodemon server.js
-```
-
-**Run Frontend**
-
-```
-cd ../client
-npm start
-```
-
-### 5. Open in browser
-
-The app will be available at:
-
-```
-👉 http://localhost:3000
-```
-
-Backend API runs at:
-```
-👉 http://localhost:5001
-```
-
-
-
+- **go Dutch** simplifies the management of shared expenses.
+- Easily **track and split costs among groups** such as roommates, travel friends, or project teams.
+- Provides a clear **overview of what you owe and what others owe you** — all in one place.
 
 
 ## 🛠 Features
-- **View Total Amount Owed and Amount Owed to the User**
 
+
+- **View total amount owed and amount owed to you**
 | <img src="https://i.imgur.com/nb7F09X.gif" width="300" /> |
 | --- |
 
-- **Create New Groups and Add Members Using Their Email Addresses**
+- **Create and join groups**
 
 | <img src="https://i.imgur.com/VFEylwm.gif" width="300" /> |<img src="https://imgur.com/ePyR6gj.gif" width="300" /> |
 | --- | --- |
 
 
-- **Split costs equally or based on usage between users.**
+- **Add bills and split expenses**
 
 | <img src="https://imgur.com/SMhUMWs.gif" width="300" /> |<img src="https://imgur.com/mtxpqKf.gif" width="300" /> |
 | --- | --- |
 
 
-## Technologies Used
+- **View user details and balances**
+- **Location-based currency detection**
+- **Cloudinary image upload**
+- **JWT-based authentication**
+
+
+
+## 🧰 Tech Stack
+
+### **Frontend**
+- React  
+- TypeScript  
+- Redux Toolkit  
+- React Router  
+
+### **Backend**
+- Node.js  
+- Express  
+- MongoDB / Mongoose  
+- Passport + JWT
+- bcrypt (for hashing passwords)
+- Multer (for handling file uploads)
+
+
+### **External APIs / Services**
+- Cloudinary  
+- ipgeolocation API  
+- MongoDB Atlas
+
+
+## 🏛 Architecture
+
+```
+Client (React + TypeScript)
+        ↓
+Server (Node.js + Express)
+        ↓
+MongoDB Atlas (Database)
+
+Authentication: JWT
+File Uploads: Cloudinary
+Location API: ipgeolocation.io
+```
+
+## 📂 Folder Structure
+
+```
+goDutch/
+├── client/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── functions/
+│   │   ├── utils/
+│   │   ├── @types/
+│   │   ├── react-app-env.d.ts
+│   │   └── App.tsx
+│   └── package.json
+│
+└── server/
+    ├── config/
+    ├── controllers/
+    ├── models/
+    ├── routes/
+    ├── index.js
+    └── package.json
+```
+
+
+
+## 🚀 Quick Start
+
+Follow the steps below to run **goDutch** locally.
+
+---
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/<your-username>/<your-repo>.git
+cd goDutch
+```
+
+---
+
+### 2. Install dependencies
+
+#### Client
+```bash
+cd client
+npm install
+```
+
+#### Server
+```bash
+cd ../server
+npm install
+```
+
+---
+
+### 3. Set up environment variables
+
+#### 🟦 Client `.env`
+
+Create:
+
+```
+client/.env
+```
+
+Add:
+
+```env
+REACT_APP_API_URL=http://localhost:5000
+REACT_APP_API_KEY_LOCATION=<YOUR_IP_GEO_KEY>
+```
+
+---
+
+#### 🟥 Server `.env`
+
+Create:
+
+```
+server/.env
+```
+
+Add:
+
+```env
+MONGO_DB=mongodb+srv://<username>:<password>@cluster.mongodb.net/goDutch
+PORT=5000
+JWT_SECRET=<your_secret>
+```
+
+---
+
+### 4. Start the development servers
+
+#### Backend
+```bash
+cd server
+npx nodemon server.js
+```
+
+#### Frontend
+```bash
+cd ../client
+npm start
+```
+
+Open the frontend:  
+👉 http://localhost:3000
+
+
+
+## 🔗 API Endpoints
+
+### **Auth**
+```
+POST /api/users/signup
+POST /api/users/login
+GET  /api/users/profile
+```
+
+### **Groups**
+```
+POST /api/groups/create
+GET  /api/groups/my-groups
+```
+
+### **Bills**
+```
+POST /api/bills/create
+GET  /api/bills/:groupId
+```
+
+
+## 🚧 Future Improvements
+
+- Add settlement feature for balance clearing  
+- Real-time updates via WebSockets  
+- Push Notifications  
+- Multi-language support  
+- Add PWA mode  
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!  
+Feel free to open issues or submit pull requests.
+
+---
+
+## 📄 License
+This project is licensed under the MIT License.
 
  
 
-- Frontend
 
-  - React (with TypeScript)
-  - Redux Toolkit (for state management)
-  - React Framer(for UI animation)
-
-- Backend:
-  - Node.js (with TypeScript)
-  - Express.js (RESTful API)
-  - MongoDB (database)
-  - Multer (for handling file uploads)
-  - Cloudinary (for image hosting)
-  - JWT (JSON Web Token)
-  - Passport.js (for authentication)
-  - bcrypt (for hashing passwords)
 
 
 
