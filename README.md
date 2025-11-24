@@ -60,7 +60,7 @@ MONGO_DB=mongodb+srv://<username>:<password>@cluster0.mongodb.net/goDutch
 PORT=5001
 ```
 
-###4. Start the development servers
+### 4. Start the development servers
 
 **Run Backend**
 
@@ -76,7 +76,7 @@ cd ../client
 npm start
 ```
 
-###5. Open in browser
+### 5. Open in browser
 
 The app will be available at:
 
