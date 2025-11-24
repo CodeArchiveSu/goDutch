@@ -22,6 +22,9 @@ function Login() {
     });
   };
 
+  console.log("API_URL", process.env.REACT_APP_API_URL);
+
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -51,7 +54,7 @@ function Login() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/users/login",
+        `${process.env.REACT_APP_API_URL}/api/users/login`,
         requestOptions
       );
 

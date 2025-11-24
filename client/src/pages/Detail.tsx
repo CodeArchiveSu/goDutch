@@ -102,7 +102,7 @@ function Detail() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/bills/addNewBills",
+        `${process.env.REACT_APP_API_URL}/api/bills/addNewBills`,
         requestOptions
       );
       if (response.ok) {
@@ -176,7 +176,7 @@ function Detail() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/groups//detail/${groupId}`,
+        `${process.env.REACT_APP_API_URL}/api/groups//detail/${groupId}`,
         requestOptions
       );
       if (response.ok) {
@@ -199,7 +199,7 @@ function Detail() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/bills/laodBills/${groupId}`,
+        `${process.env.REACT_APP_API_URL}/api/bills/laodBills/${groupId}`,
         requestOptions
       );
 
