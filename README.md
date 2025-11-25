@@ -2,6 +2,8 @@
 
 goDutch is a smart and intuitive full-stack application designed to help groups **track, split, and settle shared expenses easily** — whether it's for trips, flatshares, events, or daily shared costs.
 
+![easyme](https://i.imgur.com/ZY3w4pH.png)   
+
 
 ## 📖 Contents  
 - [What is goDutch?](#-what-is-godutch)  
